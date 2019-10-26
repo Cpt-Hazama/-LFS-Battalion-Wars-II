@@ -1,0 +1,10 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models/cpthazama/bwii/solarempire/vse_gshp01_main"
+	"$bumpmap" 	"models/cpthazama/bwii/solarempire/vse_gshp01_main_n"
+	"$alphatest" "1"
+
+	"$phong" "1"
+	"$phongboost" "1.1"						
+	"$phongfresnelranges"	"[ .2 1.2 8]"
+}

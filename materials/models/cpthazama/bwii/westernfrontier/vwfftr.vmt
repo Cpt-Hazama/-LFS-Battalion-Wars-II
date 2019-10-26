@@ -1,0 +1,10 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models/cpthazama/bwii/westernfrontier/vwfftr"
+	"$bumpmap" 	"models/cpthazama/bwii/westernfrontier/vwfftr_n"
+	"$alphatest" "1"
+
+	"$phong" "1"
+	"$phongboost" "1.1"						
+	"$phongfresnelranges"	"[ .2 1.2 8]"
+}

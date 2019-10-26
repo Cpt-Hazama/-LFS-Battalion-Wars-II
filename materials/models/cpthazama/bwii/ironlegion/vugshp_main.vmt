@@ -1,0 +1,31 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" "models/cpthazama/bwii/ironlegion/vugshp_main"
+	"$bumpmap" 	"models/cpthazama/bwii/ironlegion/vugshp_main_n"
+	"$alphatest" "1"
+
+	$emissiveBlendEnabled 1
+    $emissiveBlendTexture    "dev/null"
+    $emissiveBlendBaseTexture    "models/cpthazama/bwii/ironlegion/vugshp_main_g"
+    $emissiveBlendFlowTexture    "dev/null"
+    $emissiveBlendStrength 1
+    $emissiveBlendScrollVector "[0 0]"
+
+	//"$selfillum" 1
+	//$selfillummask "models/cpthazama/bwii/ironlegion/vugshp_main_g"
+
+	"Proxies"
+	{
+		"Sine"
+		{
+			"resultVar"	"$selfillumtint"
+			"sineperiod"	1.65
+			"sinemin"	2
+			"sinemax"	15
+		}
+	}
+
+	"$phong" "1"
+	"$phongboost" "1.1"						
+	"$phongfresnelranges"	"[ .2 1.2 8]"
+}
