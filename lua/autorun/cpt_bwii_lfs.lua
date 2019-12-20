@@ -134,14 +134,14 @@ local function lfs_HUD_BWII()
 	surface.SetDrawColor(255,255,255,255)
 	surface.DrawTexturedRectRotated(posX,posY,scale,scale,0)
 		
-	if hp <= maxhp *0.4 then
-		local scale = 85
-		local posX = 591
-		local posY = 945
-		surface.SetMaterial(Material("bwii/enemy.png"))
-		surface.SetDrawColor(255,255,255,255)
-		surface.DrawTexturedRectRotated(posX,posY,scale,scale,0)
-	end
+	-- if hp <= maxhp *0.4 then
+		-- local scale = 85
+		-- local posX = 591
+		-- local posY = 945
+		-- surface.SetMaterial(Material("bwii/enemy.png"))
+		-- surface.SetDrawColor(255,255,255,255)
+		-- surface.DrawTexturedRectRotated(posX,posY,scale,scale,0)
+	-- end
 end
 hook.Add("HUDPaint","lfs_HUD_BWII",lfs_HUD_BWII)
 end

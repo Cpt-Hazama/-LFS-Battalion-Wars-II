@@ -56,7 +56,7 @@ function ENT:AltPrimaryAttack( Driver, Pod )
 
 	local bullet = {}
 	bullet.Num 			= 1
-	bullet.Src 			= self:GetAttachment(self:LookupAttachment("turret")).Pos
+	bullet.Src 			= self:GetAttachment(self:LookupAttachment("turret")).Pos +self:GetAttachment(self:LookupAttachment("turret")).Ang:Forward() *10
 	bullet.Dir 			= (TracePlane.HitPos - bullet.Src):GetNormalized()
 	bullet.Spread 		= Vector(0.09,0.09,0)
 	bullet.Tracer		= 1
