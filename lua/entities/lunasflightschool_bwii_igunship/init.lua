@@ -128,7 +128,7 @@ function ENT:PrimaryAttack()
 		end
 	} )
 	
-	local ent = ents.Create("lunasflightschool_bwii_missile")
+	local ent = ents.Create("lunasflightschool_bwii_missile_legion")
 	local Pos
 	if self.MirrorPrimary == 1 then
 		Pos = self:LocalToWorld(lRocket1)

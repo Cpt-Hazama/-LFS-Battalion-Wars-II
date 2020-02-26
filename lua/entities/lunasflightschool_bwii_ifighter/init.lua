@@ -126,7 +126,7 @@ function ENT:FireMissile(t)
 				end
 			} )
 			
-			local ent = ents.Create("lunasflightschool_bwii_missile")
+			local ent = ents.Create("lunasflightschool_bwii_missile_legion")
 			local Pos
 			if Mirror == 1 then
 				Pos = self:LocalToWorld(lMissile)
@@ -150,7 +150,7 @@ function ENT:FireMissile(t)
 				if IsValid(enemy) then
 					if math.random(1,8) != 1 then
 						if string.find(enemy:GetClass(),"lunasflightschool") then
-							if enemy:GetClass() == "lunasflightschool_bwii_missile" then return end
+							if enemy:GetClass() == "lunasflightschool_bwii_missile" or enemy:GetClass() == "lunasflightschool_bwii_missile_legion" then return end
 							ent:SetLockOn(enemy)
 							ent:SetStartVelocity(0)
 						end
