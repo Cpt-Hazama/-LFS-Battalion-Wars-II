@@ -4,6 +4,22 @@
 	"$bumpmap" 	"models/cpthazama/bwii/ironlegion/vubomber01_main_n"
 	"$alphatest" "1"
 
+	"$normalmapalphaenvmapmask"	"1"
+	"$phong"				"1"
+	"$phongexponent"			"15"
+	"$phongboost"			"20"
+	"$phongtint"			"[0.08 0.04 0.05]"
+	"$phongfresnelranges"		"[0.67 0.83 1]"
+
+	"$phongalbedotint" 			"1"
+	"$phongexponenttexture" 		"models/cpthazama/bwii/exp_255"
+	"$phongwarptexture" 			"models/cpthazama/bwii/phongwarp_metal2"
+
+	"$rimlight"     "1"
+	"$rimlightexponent"   "1" 
+	"$rimlightboost"   "1"
+	"$rimmask"      "1"
+
 	$emissiveBlendEnabled 1
     $emissiveBlendTexture    "dev/null"
     $emissiveBlendBaseTexture    "models/cpthazama/bwii/ironlegion/vubomber01_main_g"
@@ -24,8 +40,4 @@
 			"sinemax"	15
 		}
 	}
-
-	"$phong" "1"
-	"$phongboost" "1.1"			
-	"$phongfresnelranges"	"[ .2 1.2 8]"
 }
