@@ -94,6 +94,9 @@ local function lfs_HUD_BWII()
 	local icon = "entities/" .. vehicle:GetClass() .. ".png"
 	-- local name = vehicle:GetNWString("bwii_name")
 	local name = language.GetPhrase(vehicle:GetClass())
+	if name == vehicle:GetClass() then
+		name = vehicle.PrintName
+	end
 	local hp = vehicle:GetHP()
 	local maxhp = vehicle:GetMaxHP()
 

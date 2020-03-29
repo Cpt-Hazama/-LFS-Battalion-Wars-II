@@ -28,27 +28,23 @@ ENT.WheelPos_R 		= 	Vector(-12.67,-104.83,0)
 ENT.WheelPos_C   	= 	Vector(129.05,0,0)
 
 ENT.IdleRPM = 300
-ENT.MaxRPM = 1800
-ENT.LimitRPM = 1800
+ENT.MaxRPM = 2200
+ENT.LimitRPM = 2200
 
 ENT.RotorPos = Vector(50,0,135)
 ENT.WingPos = Vector(28.18,0,52.25)
 ENT.ElevatorPos = Vector(-220.62,0,48.35)
 ENT.RudderPos = Vector(-220.33,0,63.8)
 
-ENT.MaxVelocity = 650
+ENT.MaxVelocity = 1200
 
-ENT.MaxThrust = 900
-
--- ENT.MaxTurnPitch = 350
--- ENT.MaxTurnYaw = 700
--- ENT.MaxTurnRoll = 100
+ENT.MaxThrust = 600
 
 ENT.MaxTurnPitch = 250
 ENT.MaxTurnYaw = 300
-ENT.MaxTurnRoll = 70
+ENT.MaxTurnRoll = 90
 
-ENT.MaxPerfVelocity = 	500 -- speed in which the plane will have its maximum turning potential
+ENT.MaxPerfVelocity = 	1100 -- speed in which the plane will have its maximum turning potential
 
 ENT.MaxHealth = BWII_HP_STRATODESTROYER
 

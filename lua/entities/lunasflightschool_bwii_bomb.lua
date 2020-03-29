@@ -44,6 +44,9 @@ if SERVER then
 		end
 		
 		self.SpawnTime = CurTime()
+		
+		self.snd = CreateSound(self,self.IdleSound)
+		self.snd:SetSoundLevel(80)
 	end
 
 	function ENT:Think()	
@@ -56,6 +59,17 @@ if SERVER then
 			util.BlastDamage( IsValid( Inflictor ) and Inflictor or Entity(0), IsValid( Attacker ) and Attacker or Entity(0), self:GetPos(),self.DMGDist,self.DMG)
 			
 			self:Remove()
+		end
+			
+		if !self.snd:IsPlaying() then
+			local tr = util.TraceLine({
+				start = self:GetPos(),
+				endpos = self:GetPos() +Vector(0,0,-2500),
+				filter = self
+			})
+			if tr.Hit then
+				self.snd:Play()
+			end
 		end
 		
 		if (self.SpawnTime + 12) < curtime then
@@ -71,6 +85,10 @@ if SERVER then
 
 	function ENT:OnTakeDamage( dmginfo )	
 
+	end
+
+	function ENT:OnRemove()	
+		self.snd:Stop()
 	end
 else
 
@@ -95,9 +113,6 @@ else
 			"particle/smokesprites_0015",
 			"particle/smokesprites_0016"
 		}
-		
-		self.snd = CreateSound(self,self.IdleSound)
-		self.snd:Play()
 	end
 
 	function ENT:Draw()
@@ -111,7 +126,6 @@ else
 		self:Explosion( Pos + self:GetVelocity() / 20 )
 		
 		local random = math.random(1,2)
-		self.snd:Stop()
 		sound.Play(self.ExplodeSound, Pos, 95, 140, 1 )
 	end
 
