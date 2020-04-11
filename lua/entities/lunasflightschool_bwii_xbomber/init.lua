@@ -54,9 +54,102 @@ function ENT:RunOnSpawn()
 		},
 	}
 	
-	self:SetGunnerSeat(self:AddPassengerSeat(self:GetGunnerData("cgun").stPos,self:GetGunnerData("cgun").stAng)) -- Pod 1
-	self:AddPassengerSeat(self:GetGunnerData("lgun").stPos,self:GetGunnerData("lgun").stAng) -- Pod 2
-	self:AddPassengerSeat(self:GetGunnerData("rgun").stPos,self:GetGunnerData("rgun").stAng) -- Pod 3
+	-- self:SetGunnerSeat(self:AddPassengerSeat(self:GetGunnerData("cgun").stPos,self:GetGunnerData("cgun").stAng)) -- Pod 1
+	
+	self:SetGunnerPodCenter(self:CreateGunnerSeat("cgun"))
+	self:SetGunnerPodLeft(self:CreateGunnerSeat("lgun"))
+	self:SetGunnerPodRight(self:CreateGunnerSeat("rgun"))
+end
+
+function ENT:CreateGunnerSeat(pName)
+	local gunnerPod = self:AddPassengerSeat(self:GetGunnerData(pName).stPos,self:GetGunnerData(pName).stAng)
+	gunnerPod:SetParent(NULL)
+	gunnerPod:SetPos(self:LocalToWorld(self:GetGunnerData(pName).stPos))
+	gunnerPod:SetAngles(self:LocalToWorldAngles(self:GetGunnerData(pName).stAng))
+	gunnerPod:SetParent(self)
+	return gunnerPod
+end
+
+function ENT:OnTick()
+	local Pod = self:GetGunnerPodCenter()
+	if IsValid(Pod) then
+		local ply = Pod:GetDriver()
+		if ply != self:GetGunnerCenter() then
+			self:SetGunnerCenter(ply)
+		end
+		if IsValid(ply) then
+			local pName = "cgun"
+			local EyeAngles = Pod:WorldToLocalAngles(ply:EyeAngles())
+			local aimOffset = 0
+			local _,LocalAng = WorldToLocal(Vector(0,0,0),EyeAngles,Vector(0,0,0),self:LocalToWorldAngles(Angle(0,aimOffset,0)))
+			self:SetPoseParameter("cgun_pitch",-LocalAng.p)
+			self:SetPoseParameter("cgun_yaw",LocalAng.y)
+			self:FirePod(ply:KeyDown(IN_ATTACK),Pod,pName)
+		end
+	end
+
+	local Pod = self:GetGunnerPodLeft()
+	if IsValid(Pod) then
+		local ply = Pod:GetDriver()
+		if ply != self:GetGunnerLeft() then
+			self:SetGunnerLeft(ply)
+		end
+		if IsValid(ply) then
+			local pName = "lgun"
+			local EyeAngles = Pod:WorldToLocalAngles(ply:EyeAngles())
+			local aimOffset = 90
+			local _,LocalAng = WorldToLocal(Vector(0,0,0),EyeAngles,Vector(0,0,0),self:LocalToWorldAngles(Angle(0,aimOffset,0)))
+			self:SetPoseParameter("lgun_pitch",-LocalAng.p)
+			self:SetPoseParameter("lgun_yaw",LocalAng.y)
+			self:FirePod(ply:KeyDown(IN_ATTACK),Pod,pName)
+		end
+	end
+
+	local Pod = self:GetGunnerPodRight()
+	if IsValid(Pod) then
+		local ply = Pod:GetDriver()
+		if ply != self:GetGunnerRight() then
+			self:SetGunnerRight(ply)
+		end
+		if IsValid(ply) then
+			local pName = "rgun"
+			local EyeAngles = Pod:WorldToLocalAngles(ply:EyeAngles())
+			local aimOffset = -90
+			local _,LocalAng = WorldToLocal(Vector(0,0,0),EyeAngles,Vector(0,0,0),self:LocalToWorldAngles(Angle(0,aimOffset,0)))
+			self:SetPoseParameter("rgun_pitch",-LocalAng.p)
+			self:SetPoseParameter("rgun_yaw",LocalAng.y)
+			self:FirePod(ply:KeyDown(IN_ATTACK),Pod,pName)
+		end
+	end
+end
+
+function ENT:FirePod(fire,Pod,pName)
+	if !fire then return end
+	if not IsValid(Pod) then return end
+	if not IsValid(Pod:GetDriver()) then return end
+	
+	local data = self:GetGunnerData(pName)
+	if !self:CanGunnerPrimaryAttack(pName) then return end
+
+	self:SetNextGunnerAttack(pName)
+
+	local bullet = {}
+	bullet.Num 			= 1
+	bullet.Src 			= self:GetAttachment(self:LookupAttachment(data.att)).Pos
+	bullet.Dir 			= self:GetAttachment(self:LookupAttachment(data.att)).Ang:Forward()
+	bullet.Spread 		= Vector(0.09,0.09,0)
+	bullet.Tracer		= 1
+	bullet.TracerName 	= "lfs_tracer_white"
+	bullet.Force		= 15
+	bullet.HullSize 	= 10
+	bullet.Damage		= data.dmg
+	bullet.Attacker 	= Pod:GetDriver()
+	bullet.AmmoType 	= "Pistol"
+	bullet.Callback 	= function(att,tr,dmginfo)
+		dmginfo:SetDamageType(DMG_BULLET)
+	end
+	self:FireBullets(bullet)
+	self:EmitSound("LFS_XBOMBER_GUN")
 end
 
 function ENT:GetGunnerData(pod)

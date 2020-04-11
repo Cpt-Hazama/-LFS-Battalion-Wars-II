@@ -54,6 +54,15 @@ ENT.MaxSecondaryAmmo = -1
 
 ENT.MaxStability 	= 	0.9
 
+function ENT:AddDataTables()
+	self:NetworkVar("Entity",12,"GunnerPodCenter")
+	self:NetworkVar("Entity",13,"GunnerPodLeft")
+	self:NetworkVar("Entity",14,"GunnerPodRight")
+	self:NetworkVar("Entity",15,"GunnerCenter")
+	self:NetworkVar("Entity",16,"GunnerLeft")
+	self:NetworkVar("Entity",17,"GunnerRight")
+end
+
 function ENT:GetPassengerPod(iPod)
 	local pods = self:GetPassengerSeats()
 	return pods[iPod]

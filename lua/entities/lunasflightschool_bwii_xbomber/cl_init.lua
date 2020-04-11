@@ -173,7 +173,7 @@ function ENT:AnimFins()
 	local up = 15
 	local down = 73
 	local att = "center_gun"
-	self:TurnTurret(Driver,HasGunner,CENTERGUN,turn,up,down)
+	-- self:TurnTurret(Driver,HasGunner,CENTERGUN,turn,up,down)
 		-- You have to use pose parameters boys, I spent so much time trying to Network the pod driver but it wasn't working. Besides, pose parameters are better :P
 	-- local Pod2 = self:GetPassengerPod(2)
 	-- local Pod3 = self:GetPassengerPod(3)

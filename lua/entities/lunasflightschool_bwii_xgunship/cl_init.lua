@@ -170,36 +170,6 @@ function ENT:AnimFins()
 	local HasGunner = IsValid( Gunner )
 	if not IsValid(Driver) and not HasGunner then return end
 	if HasGunner then Driver = Gunner end
-	
-	if HasGunner then -- Do right turret
-		local EyeAngles = self:WorldToLocalAngles(Gunner:EyeAngles())
-		EyeAngles:RotateAroundAxis(EyeAngles:Up(),90)
-		local Yaw = math.Clamp(EyeAngles.y,-65,65)
-		local Pitch = math.Clamp(EyeAngles.p,-95,95)
-		if not HasGunner then
-			Yaw = 0
-			Pitch = 0
-		end
-		print(Yaw,Pitch)
-		if Yaw >= 64 or Yaw <= -64 then
-			self:SetNWBool("RightTurret",false)
-		else
-			self:SetNWBool("RightTurret",true)
-		end
-		self:ManipulateBoneAngles(15,Angle(Pitch,Yaw,0))
-	else -- Do left turret
-		local EyeAngles = self:WorldToLocalAngles(Driver:EyeAngles())
-		EyeAngles:RotateAroundAxis(EyeAngles:Up(),270)
-		local Yaw = math.Clamp(EyeAngles.y,-65,65)
-		local Pitch = math.Clamp(EyeAngles.p,-95,95)
-		if not Driver:lfsGetInput("FREELOOK") then
-			Yaw = 0
-			Pitch = 0
-		end
-		local ang = Angle(-Pitch,Yaw,0)
-		self:ManipulateBoneAngles(14,ang)
-		self:SetNWAngle("lturret",ang)
-	end
 end
 
 function ENT:AnimRotor()

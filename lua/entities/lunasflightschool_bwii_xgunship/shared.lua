@@ -37,6 +37,13 @@ ENT.MaxHealth = BWII_HP_GUNSHIP
 
 ENT.MaxPrimaryAmmo = 500
 
+function ENT:AddDataTables()
+	self:NetworkVar("Entity",12,"GunnerPodLeft")
+	self:NetworkVar("Entity",13,"GunnerPodRight")
+	self:NetworkVar("Entity",14,"GunnerLeft")
+	self:NetworkVar("Entity",15,"GunnerRight")
+end
+
 sound.Add({
 	name = "LFS_XGUNSHIP_ENGINE",
 	channel = CHAN_STATIC,
