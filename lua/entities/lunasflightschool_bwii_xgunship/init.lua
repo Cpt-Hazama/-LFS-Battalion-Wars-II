@@ -87,7 +87,7 @@ function ENT:OnTick()
 			local aimOffset = -90
 			local _,LocalAng = WorldToLocal(Vector(0,0,0),EyeAngles,Vector(0,0,0),self:LocalToWorldAngles(Angle(0,aimOffset,0)))
 			self:SetPoseParameter("rgun_pitch",-LocalAng.p)
-			self:SetPoseParameter("rgun_yaw",LocalAng.y)
+			self:SetPoseParameter("rgun_yaw",-LocalAng.y)
 			self:FirePod(ply:KeyDown(IN_ATTACK),Pod,pName)
 		end
 	end

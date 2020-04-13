@@ -179,7 +179,7 @@ function ENT:AnimRotor()
 	self.RPM = self.RPM and (self.RPM + RPM * FrameTime() * (PhysRot and 3 or 1)) or 0
 	ROTOR = 12
 	LEFTROTOR = 13
-	RIGHTROTOR = 16
+	RIGHTROTOR = 18
 	local Rot1 = Angle(0,self.RPM,0)
 	local Rot2 = Angle(0,0,self.RPM)
 	local Rot3 = Angle(0,0,self.RPM)
